@@ -1,10 +1,10 @@
 import rsa
-with open('pubkey') as privatefile:
-	keydata = privatefile.read()
-	pubkey =  rsa.PublicKey.load_pkcs1(keydata)
+key=open('pubkey','r')
+klucz=key.read()
+pub =  rsa.PublicKey.load_pkcs1_openssl_pem(klucz)
 from rsa.bigfile import *
-with open('tekst.txt', 'rb') as infile, open('encode.txt', 'wb') as outfile:
-	encrypt_bigfile(infile, outfile, pubkey)
+with open('rsaprogram.zip', 'rb') as infile, open('encode.txt', 'wb') as outfile:
+	encrypt_bigfile(infile, outfile, pub)
 plik= open("encode.txt","r")
 
 plik1= plik.read()

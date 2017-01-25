@@ -1,11 +1,8 @@
-import rsa
-(pubkeya, privkeya) = rsa.newkeys(512, poolsize=2)
-print(pubkeya)
-print(privkeya)
-k=pubkeya.save_pkcs1('PEM')
-plik= open('pubkey','w')
-plik.write(k)
+from Crypto.PublicKey import RSA
+key= RSA.generate(1024)
+plik = open('privkey','w')
+plik.write(key.exportKey('PEM'))
 
-p=privkeya.save_pkcs1('PEM')
-plik= open('privkey','w')
-plik.write(p)
+pubkey = key.publickey()
+pub = open('pubkey','w')
+pub.write(pubkey.exportKey('PEM'))
